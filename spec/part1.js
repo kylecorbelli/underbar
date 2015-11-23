@@ -179,6 +179,17 @@
         _.filter([1, 2, 3, 4], isEven)
       });
 
+      // Define '_.filter' method
+      _.filter = function(input, callback) {
+          var output = [];
+          for (var i = 0; i < input.length; i++) {
+              if (callback(input[i]) === true) {
+                  output.push(input[i]);
+              }
+          }
+          return output;
+      };
+
       it('should return all even numbers in an array', function() {
         var isEven = function(num) { return num % 2 === 0; };
         var evens = _.filter([1, 2, 3, 4, 5, 6], isEven);
