@@ -373,6 +373,19 @@
         _.reduce([1, 2, 3, 4], add)
       });
 
+      // Define '._reduce' method
+      _.reduce = function(input, callback, accum) {
+        if (accum || accum === 0) {
+            accum = callback(accum, input[0]);
+        } else {
+            accum = input[0];
+        }
+        for (var i = 1; i < input.length; i++) {
+            accum = callback(accum, input[i]);
+        }
+        return accum;
+      };
+
       it('should be able to sum up an array', function() {
         var add = function(tally, item) {return tally + item; };
         var total = _.reduce([1, 2, 3], add, 0);
