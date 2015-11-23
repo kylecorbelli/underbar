@@ -1,9 +1,6 @@
 (function() {
   'use strict';
 
-  // Define the '_' object. We'll add the specific methods within each test section below
-  var _ = {};
-
   describe('Part I', function() {
 
     describe('identity', function() {
@@ -51,6 +48,15 @@
       checkForNativeMethods(function() {
         _.last([1,2,3]);
       });
+
+      // Define the '_.last' method
+      _.last = function(input, index) {
+        var length = input.length;
+        if (typeof index === 'number') {
+            return input.slice(Math.max(length - index, 0), length);
+        }
+        return input[length - 1];
+      };
 
       it('should pull the last element from an array', function() {
         expect(_.last([1,2,3])).to.equal(3);
