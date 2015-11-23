@@ -219,6 +219,17 @@
         _.reject([1, 2, 3, 4, 5, 6], isEven)
       });
 
+      // Define '_.reject' method
+      _.reject = function(input, callback) {
+          var output = [];
+          for (var i = 0; i < input.length; i++) {
+              if (callback(input[i]) === false) {
+                  output.push(input[i]);
+              }
+          }
+          return output;
+      };
+
       it('should reject all even numbers', function() {
         var isEven = function(num) { return num % 2 === 0; };
         var odds = _.reject([1, 2, 3, 4, 5, 6], isEven);
