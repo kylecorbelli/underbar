@@ -309,6 +309,15 @@
         })
       });
 
+      // Define '_.map' method
+      _.map = function(input, callback) {
+        var output = [];
+        for (var i = 0; i < input.length; i++) {
+            output.push(callback(input[i]));
+        }
+        return output;
+      };
+
       it('should apply a function to every value in an array', function() {
         var doubledNumbers = _.map([1, 2, 3], function(num) {
           return num * 2;
