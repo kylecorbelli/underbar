@@ -258,6 +258,29 @@
         _.uniq([1, 2, 3, 4])
       });
 
+      // Define '_.uniq' method
+      _.uniq = function(input, isSorted, iterator) {
+        if (!iterator) {
+            iterator = function(val) {
+                return val;
+            }
+        }
+        var output = [];
+        var inOutput;
+        for (var i = 0; i < input.length; i++) {
+            inOutput = false;
+            for (var j = 0; j < output.length; j++) {
+                if (iterator(input[i]) === iterator(output[j])) {
+                    inOutput = true;
+                }
+            }
+            if (inOutput === false) {
+                output.push(input[i]);
+            }
+        }
+        return output;
+      };
+
       it('should return all unique values contained in an unsorted array', function() {
         var numbers = [1, 2, 1, 3, 1, 4];
 
