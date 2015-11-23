@@ -1,12 +1,20 @@
 (function() {
   'use strict';
 
+  // Define the '_' object. We'll add the specific methods within each test section below
+  var _ = {};
+
   describe('Part I', function() {
 
     describe('identity', function() {
       checkForNativeMethods(function() {
         _.identity(1);
       });
+
+      // Define the '_.identity' method
+      _.identity = function(input) {
+        return input;
+      };
 
       it('should return whatever value is passed into it', function() {
         var uniqueObject = {};
