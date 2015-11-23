@@ -80,6 +80,21 @@
         _.each([1,2,3,4], function(number) {});
       });
 
+      // Define '_.each' method
+      _.each = function(input, callback) {
+        if (Array.isArray(input)) {
+            for (var i = 0; i < input.length; i++) {
+                callback(input[i], i, input);
+            }
+        } else if (input.length === undefined) {
+            for (var key in input) {
+                callback(input[key], key, input);
+            }
+        } else {
+            return input;
+        }
+      };
+
       it('should iterate over arrays, providing access to the element, index, and array itself', function() {
         var animals = ['ant', 'bat', 'cat'];
         var iterationInputs = [];
