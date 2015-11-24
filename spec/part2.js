@@ -8,6 +8,17 @@
         _.contains([4, 5, 6], 2);
       });
 
+      // Define '_.contains' method
+      _.contains = function(input, val) {
+        var output = false;
+        _.each(input, function(item) {
+          if (item === val) {
+            output = true;
+          }
+        });
+        return output;
+      };
+
       it('should return false if a collection does not contain a user-specified value', function() {
         expect(_.contains([4, 5, 6], 2)).to.be.false;
       });
