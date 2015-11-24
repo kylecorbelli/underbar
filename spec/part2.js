@@ -315,6 +315,21 @@
         });
       })
 
+      // Define '_.memoize' method
+      _.memoize = function(func) {
+        var output = function() {
+          var label = '';
+          for (var i = 0; i < arguments.length; i++) {
+            label += arguments[i].toString();
+          }
+          if (!output[label]) {
+            output[label] = true;
+            return func.apply(this, arguments);
+          }
+        };
+        return output;
+      };
+
       it('should produce the same result as the non-memoized version', function() {
         expect(add(1, 2)).to.equal(3);
         expect(memoAdd(1, 2)).to.equal(3);
