@@ -365,6 +365,17 @@
         _.delay(callback, 100);
       })
 
+      // Define '_.delay' method
+      _.delay = function(func, time) {
+        var args = [];
+        for (var i = 2; i < arguments.length; i++) {
+          args.push(arguments[i]);
+        }
+        setTimeout(function() {
+          func.apply(this, args);
+        }, time);
+      };
+
       it('should only execute the function after the specified wait time', function() {
         _.delay(callback, 100);
         clock.tick(99);
