@@ -400,6 +400,18 @@
         _.shuffle([1, 2, 3, 4])
       })
 
+      // Define '_.shuffle' method
+      _.shuffle = function(input) {
+          var temp = input.slice();
+          var output = [];
+          var rand;
+          while (temp.length > 0) {
+              rand = Math.floor(Math.random() * temp.length);
+              output.push(temp.splice(rand, 1)[0]);
+          }
+          return output;
+      };
+
       it('should not modify the original object', function() {
         var numbers = [4, 5, 6];
         var shuffled = _.shuffle(numbers).sort();
