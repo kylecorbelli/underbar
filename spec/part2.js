@@ -103,6 +103,20 @@
         _.some([4, 5, 6], _.identity);
       });
 
+      // Define '_.some' method
+      _.some = function(input, callback) {
+        if (!callback) {
+          callback = _.identity;
+        }
+        var output = false;
+        _.each(input, function(item) {
+          if (callback(item)) {
+            output = true;
+          }
+        });
+        return output;
+      };
+
       it('should fail by default for an empty collection', function() {
         expect(_.some([])).to.be.false;
       });
