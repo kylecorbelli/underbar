@@ -38,6 +38,20 @@
         return num % 2 === 0;
       };
 
+      // Define '_.every' method
+      _.every = function(input, callback) {
+        if (!callback) {
+          callback = _.identity;
+        }
+        var output = true;
+        _.each(input, function(item) {
+          if (!callback(item)) {
+            output = false;
+          }
+        });
+        return output;
+      };
+
       checkForNativeMethods(function() {
         _.every([4, 5, 6], _.identity);
       });
