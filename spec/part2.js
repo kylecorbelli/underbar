@@ -222,6 +222,18 @@
         _.defaults({ a: 1 },{ b: 1 }, { c: 1 });
       });
 
+      // Define '_.defaults' method
+      _.defaults = function(input) {
+        for (var i = 1; i < arguments.length; i++) {
+          _.each(arguments[i], function(item, key) {
+            if (!(key in input)) {
+              input[key] = item;
+            }
+          });
+        }
+        return input;
+      };
+
       it('returns the first argument', function() {
         var to = {};
         var from = {};
