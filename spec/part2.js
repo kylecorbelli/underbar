@@ -162,6 +162,16 @@
         _.extend({ a: 1 },{ b: 1 }, { c: 1 });
       });
 
+      // Define '_.extend' method
+      _.extend = function(input) {
+        for (var i = 1; i < arguments.length; i++) {
+          _.each(arguments[i], function(item, key) {
+            input[key] = item;
+          });
+        }
+        return input;
+      };
+
       it('returns the first argument', function() {
         var to = {};
         var from = {};
